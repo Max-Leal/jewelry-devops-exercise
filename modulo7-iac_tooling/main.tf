@@ -57,7 +57,7 @@ resource "aws_subnet" "jewelry_subnet" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "jewelry_subnet"
+    Name = "jewelry-subnet-max"
   }
 }
 
@@ -116,7 +116,7 @@ variable "vpc_id" {
 
 variable "instance_type" {
   type    = string
-  default = "t3.nano"
+  default = "t3.micro"
 }
 
 variable "ami_id" {
