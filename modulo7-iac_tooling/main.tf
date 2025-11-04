@@ -52,9 +52,9 @@ resource "aws_security_group" "sgJewelry" {
 }
 
 resource "aws_subnet" "jewelry_subnet" {
-  vpc_id     = var.vpc_id
-  cidr_block = "172.30.12.0/24"  
-  availability_zone = "us-east-1a" 
+  vpc_id            = var.vpc_id
+  cidr_block        = "172.30.133.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "jewelry_subnet"
@@ -65,26 +65,22 @@ resource "aws_instance" "instance-jewelry" {
 
   ami                         = var.ami_id
   instance_type               = var.instance_type
-  subnet_id                   = jewelry_subnet.id
+  subnet_id                   = aws_subnet.jewelry_subnet.id
   vpc_security_group_ids      = [aws_security_group.sgJewelry.id]
   associate_public_ip_address = true
-  user_data                   = base64encode(<<-EOF
+  user_data = base64encode(<<-EOF
     #!/bin/bash
     apt-get update
-    apt-get install -y docker.io git
+    apt install -y docker.io git build-essential
     systemctl start docker
     systemctl enable docker
-    usermod -aG docker adminuser
-
     docker container stop jewelry-app 2> /dev/null
-
-    cd /home/adminuser
-    rm -rf proway-docker/
+    cd /root
+    rm -rf jewelry-devops-exercise/
     git clone https://github.com/Max-Leal/jewelry-devops-exercise.git
-    cd ./modulo7-iac_tooling
+    cd ./jewelry-devops-exercise/modulo7-iac_tooling
     
-    docker build -t jewelry-app .
-    docker run -d -p 8080:80 jewelry-app        
+    make docker-run      
   EOF
   )
 
