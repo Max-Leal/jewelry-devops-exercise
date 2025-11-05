@@ -54,6 +54,7 @@ make docker-run
 ## Pipeline and Deploy
 
 This repository has a CI pipeline that is responsible to the integrity check and deployment 
+The pipeline needs the **AWS key** activated to work
 
 ### What does the pipeline do?
 
