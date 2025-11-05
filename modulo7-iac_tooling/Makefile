@@ -15,6 +15,10 @@ build:
 	npm install
 	npm run build
 
+run-dev:
+	npm install
+	npm run dev
+
 deploy: build apply
 	./deploy.sh
 
