@@ -4,47 +4,54 @@ Responsible of deploying the jewelry project on AWS
 
 ## Main technologies
 
-IaC: Terraform
-Cloud: AWS (EC2, S3, DynamoDB)
-CI/CD: GitHub Actions
-Build: Make
-Security: Checkov & Trivy
+ - IaC: Terraform
+ - Cloud: AWS (EC2, S3, DynamoDB)
+ - CI/CD: GitHub Actions
+ - Build: Make
+ - Security: Checkov & Trivy
 
 ## Make commands
 
-Initialize the environment: 
-```bash
-make init
-```
-
-Plan the infraestructure: 
-```bash
-make plan
-```
-
-Apply the infraestructure: 
-```bash
-make apply
-```
-
-Builds the application: 
-```bash
-make build
-```
-
-Builds and run on docker:
-```bash
-make docker-run
-```
-
-Deploys on AWS: 
+### Automated deploy on AWS
 ```bash
 make aws-deploy
 ```
 
-Destroy any environment already running: 
+### Manual deploy
+
+
 ```bash
+# Initialize the environment
+make init
+# Plan the infrastructure
+make plan
+# Apply the infrastructure
+make apply
+``` 
+or
+```bash
+# Applies the infrastructure
+make deploy
+```
+
+### Usefull commands
+
+```bash
+# Builds the application
+make build
+
+# Cleans temporary files
+make clean
+
+# Destroy any environment already running
 make aws-destroy
+```
+
+
+
+Builds and run on docker:
+```bash
+make docker-run
 ```
 
 ## Pipeline and Deploy
@@ -58,6 +65,14 @@ This repository has a CI pipeline that is responsible to the integrity check and
 3. **Apply**: Then the pipeline executes "make aws-deploy" to create all the infrastructure the project needs to run with new changes.
 
 The pipeline grants that every update on main is tested, destroyed and recreated all automated.
+
+### Security
+To grant better security for the project, Checkov and Trivy scans are used for static and container analysis.
+
+## AWS infrastructure
+ - Ec2 instance with Docker
+ - Subnet
+ - Security Group
 
 ## Accessing the application
 After the end of the pipeline, in the terraform outputs it's going to show the app url
