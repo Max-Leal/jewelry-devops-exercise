@@ -12,6 +12,9 @@ jobs:
 
     steps:
 
+      - name: Debug - Listar arquivos
+        run: ls -R
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -19,25 +22,31 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform -chdir=./modulo7-iac_tooling init
-
+        run: terraform init
+        working-directory: ./modulo7-iac_tooling
     
       - name: Terraform Validate
         id: validate
-        run: terraform -chdir=./modulo7-iac_tooling validate
+        run: terraform validate
+        working-directory: ./modulo7-iac_tooling
 
       - name: Terraform format
         id: fmt
-        run: terraform -chdir=./modulo7-iac_tooling fmt
+        run: terraform fmt
+        working-directory: ./modulo7-iac_tooling
 
       - name: Terraform Plan
         id: plan
-        run: terraform -chdir=./modulo7-iac_tooling plan
+        run: terraform plan
+        working-directory: ./modulo7-iac_tooling
 
       - name: Terraform destroy
         id: destroy
-        run: terraform -chdir=./modulo7-iac_tooling destroy -auto-approve
+        run: terraform destroy -auto-approve
+        working-directory: ./modulo7-iac_tooling
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -chdir=./modulo7-iac_tooling -auto-approve
+        run: terraform apply -auto-approve
+        working-directory: ./modulo7-iac_tooling
+        
