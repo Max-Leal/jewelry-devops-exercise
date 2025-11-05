@@ -66,6 +66,7 @@ resource "aws_instance" "instance-jewelry" {
   subnet_id                   = aws_subnet.jewelry_subnet.id
   vpc_security_group_ids      = [aws_security_group.sgJewelry.id]
   associate_public_ip_address = true
+  key_name                    = "max-jewelry"
   user_data = base64encode(<<-EOF
     #!/bin/bash
     apt-get update
