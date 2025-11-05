@@ -47,8 +47,7 @@ jobs:
         run: make aws-destroy
         working-directory: ./modulo7-iac_tooling
 
-      - name: Deploys on AWS
-        id: apply
-        run: make aws-deploy
-        working-directory: ./modulo7-iac_tooling
-        
+#      - name: Deploys on AWS
+#        id: apply
+#        run: make aws-deploy
+#        working-directory: ./modulo7-iac_tooling

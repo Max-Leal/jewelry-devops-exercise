@@ -66,6 +66,8 @@ The pipeline grants that every update on main is tested, destroyed and recreated
 ### Security
 To grant better security for the project, Checkov and Trivy scans are used for static and container analysis.
 
+Right now they are configured to accept errors with the "soft fail" config, to grant functionality and deployment on AWS.
+
 ## AWS infrastructure
  - Ec2 instance with Docker
  - Subnet
