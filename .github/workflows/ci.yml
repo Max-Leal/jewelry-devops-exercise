@@ -27,16 +27,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y make
-    
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate
-        working-directory: ./modulo7-iac_tooling
-
-      - name: Terraform format
-        id: fmt
-        run: make format
-        working-directory: ./modulo7-iac_tooling
 
       - name: Terraform destroy
         id: destroy

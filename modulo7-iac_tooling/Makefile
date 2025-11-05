@@ -31,7 +31,7 @@ aws-deploy: apply
 	@echo "Aguarde alguns minutos para a aplicação inicializar..."
 	@echo "URL: http://$$(terraform output -raw instance_public_ip):8080"
 
-aws-destroy:
+aws-destroy: init
 	terraform destroy -auto-approve
 
 format:
