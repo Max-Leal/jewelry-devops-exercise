@@ -19,30 +19,25 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
-        working-directory: modulo7-iac_tooling
+        run: terraform -chdir=./modulo7-iac_tooling init
+
     
       - name: Terraform Validate
         id: validate
-        run: terraform validate
-        working-directory: modulo7-iac_tooling
+        run: terraform -chdir=./modulo7-iac_tooling validate
 
       - name: Terraform format
         id: fmt
-        run: terraform fmt
-        working-directory: modulo7-iac_tooling
+        run: terraform -chdir=./modulo7-iac_tooling fmt
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan
-        working-directory: modulo7-iac_tooling
+        run: terraform -chdir=./modulo7-iac_tooling plan
 
       - name: Terraform destroy
         id: destroy
-        run: terraform destroy -auto-approve
-        working-directory: modulo7-iac_tooling
+        run: terraform -chdir=./modulo7-iac_tooling destroy -auto-approve
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -var-file="terraform.tfvars" -auto-approve
-        working-directory: modulo7-iac_tooling
+        run: terraform apply -chdir=./modulo7-iac_tooling -auto-approve
