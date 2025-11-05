@@ -19,7 +19,6 @@ make aws-deploy
 
 ### Manual deploy
 
-
 ```bash
 # Initialize the environment
 make init
@@ -46,8 +45,6 @@ make clean
 # Destroy any environment already running
 make aws-destroy
 ```
-
-
 
 Builds and run on docker:
 ```bash
@@ -79,5 +76,12 @@ After the end of the pipeline, in the terraform outputs it's going to show the a
 
 Outputs:
 ```bash
-app_url = "APP: http://<IP_PUBLICO_DA_EC2>:8080"
+app_url = "APP: http://<EC2_PUBLIC_IP>:8080"
 ```
+## Main questions
+
+### Can the project created for the OLD client technically be implemented in the NEW client's environment?
+Yes, changing the infrastructure that terraform creates from Azure to AWS.
+
+### Which items need to be adjusted? IaC? Docker? Makefile?
+IaC and Makefile needs to be ajusted to work on AWS, because they have the Azure semantics.
