@@ -20,6 +20,7 @@ jobs:
         with:
           directory: ./modulo7-iac_tooling
           soft_fail: true
+          #soft_fail: false
 
       - name: Scan Geral do Repositório (Trivy)
         uses: aquasecurity/trivy-action@master
@@ -27,6 +28,7 @@ jobs:
           scan-type: 'fs'
           scan-ref: './modulo7-iac_tooling'
           scanners: 'vuln,misconfig,secret'
+          #exit-code: '1'
           severity: 'HIGH,CRITICAL'
           format: 'table'
 
