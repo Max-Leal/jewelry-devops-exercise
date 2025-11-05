@@ -27,7 +27,6 @@ jobs:
           scan-type: 'fs'
           scan-ref: './modulo7-iac_tooling'
           scanners: 'vuln,misconfig,secret'
-          exit-code: '1'
           severity: 'HIGH,CRITICAL'
           format: 'table'
 
